@@ -1,0 +1,18 @@
+{
+    "batteryChemistries": [
+        {
+            "id": "nmc",
+            "name": "NMC",
+            "models": [
+                "NMC_Pouch_Cell"
+            ]
+        },
+        {
+            "id": "lfp",
+            "name": "LFP",
+            "models": [
+                "18650_LFP"
+            ]
+        }
+    ]
+}
