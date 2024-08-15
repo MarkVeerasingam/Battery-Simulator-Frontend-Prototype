@@ -1,8 +1,14 @@
 {
     "driveCycles": [
-        "dog",
-        "cat",
-        "parrot",
-        "rabbit"
+        "LFP_25degC_1C.csv",
+        "LFP_25degC_2C.csv",
+        "LFP_25degC_Co2.csv",
+        "LFP_25degC_Co20.csv",
+        "LFP_25degC_DriveCycle.csv",
+        "NMC_25degC_1C.csv",
+        "NMC_25degC_2C.csv",
+        "NMC_25degC_Co2.csv",
+        "NMC_25degC_Co20.csv",
+        "NMC_25degC_DriveCycle.csv"
     ]
 }

@@ -15,10 +15,9 @@ $(document).ready(function () {
             $('#timeEval-field').hide("slow");
             $('#driveCycle-field').show("slow");
 
-            // Populate the dropdown only if it's empty
-            if ($('#driveCycle-field').find('select').length === 0) {
-                await populateDriveCycleDropdown(); // Wait for dropdown to be populated
-            }
+            $('#driveCycle-field').empty();
+
+            await populateDriveCycleDropdown();
         } else if (selection === "timeEval") {
             $('#experiment-field').hide("slow");
             $('#driveCycle-field').hide("slow");

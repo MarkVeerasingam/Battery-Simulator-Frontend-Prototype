@@ -7,7 +7,7 @@ export async function populateDriveCycleDropdown() {
         .append(
             $(document.createElement('label')).prop({
                 for: 'driveCycles'
-            }).html('Choose Drive Cycle: ')
+            })
         )
         .append(
             $(document.createElement('select')).prop({

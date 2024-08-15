@@ -7,41 +7,85 @@
     <title>Battery Simulator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module" src="../src/js/radio-select.js"></script>
-    <!-- <link rel="stylesheet" href="../src/css/styles.css"> -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet" />
+    <!-- Line Awesome CDN Link -->
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
 </head>
 
 <body>
-    <form>
-        <!-- Radio Input -->
-        <div>
-            <input type="radio" name="simulation" value="driveCycle">
-            <label>Drive Cycle</label>
-        </div>
-        <div>
-            <input type="radio" name="simulation" value="experiment">
-            <label>Experiment</label>
-        </div>
-        <div>
-            <input type="radio" name="simulation" value="timeEval">
-            <label>Time Evaluation</label>
-        </div>
+    <div class="main-container">
+        <div class="left-container">
+            <div class="dropdown-container">
+                <label for="battery-model">Select Battery Model</label>
+                <select id="battery-model">
+                    <option value="">Choose a model</option>
+                    <option value="model1">Model 1</option>
+                    <option value="model2">Model 2</option>
+                    <option value="model3">Model 3</option>
+                </select>
+            </div>
+            <div class="radio-buttons-container">
+                <form class="radio-buttons">
+                    <!-- Drive Cycle -->
+                    <label class="custom-radio">
+                        <input type="radio" name="simulation" value="driveCycle" />
+                        <span class="radio-btn">
+                            <i class="las la-check"></i>
+                            <div class="hobbies-icon">
+                                <i class="las la-car"></i>
+                                <h3>Drive Cycle</h3>
+                            </div>
+                        </span>
+                    </label>
 
-        <!-- If selected display results for given option -->
-        <div>
+                    <!-- Experiment -->
+                    <label class="custom-radio">
+                        <input type="radio" name="simulation" value="experiment" />
+                        <span class="radio-btn">
+                            <i class="las la-check"></i>
+                            <div class="hobbies-icon">
+                                <i class="las la-flask"></i>
+                                <h3>Experiment</h3>
+                            </div>
+                        </span>
+                    </label>
+
+                    <!-- Time Evaluation -->
+                    <label class="custom-radio">
+                        <input type="radio" name="simulation" value="timeEval" />
+                        <span class="radio-btn">
+                            <i class="las la-check"></i>
+                            <div class="hobbies-icon">
+                                <i class="las la-clock"></i>
+                                <h3>Time Evaluation</h3>
+                            </div>
+                        </span>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="fields-container">
             <!-- Display the text area for experiment -->
-            <div>
-                <textarea rows="2" cols="20" id="experiment-field" style="display:none"></textarea>
+            <div id="experiment-field" class="field" style="display:none">
+                <textarea id="experiment-textarea"
+                    placeholder="Discharge at C/5 for 10 hours or until 2.5 V, Rest for 1 hour, Charge at 1 A until 3.5 V, Hold at 3.5 V until 10 mA, Rest for 1 hour"></textarea>
             </div>
             <!-- Display the field for time evaluation -->
-            <div>
-                <input type="text" id="timeEval-field" style="display:none">
+            <div id="timeEval-field" class="field" style="display:none">
+                <input type="text" placeholder="[0, 7200]">
             </div>
             <!-- Display the drop down for driveCycle -->
-            <div>
-                <div id="driveCycle-field" style="display:none"></div>
+            <div id="driveCycle-field" class="field" style="display:none">
+                <select>
+                    <option value="">Select Drive Cycle</option>
+                </select>
             </div>
         </div>
-    </form>
+    </div>
 </body>
 
 </html>
