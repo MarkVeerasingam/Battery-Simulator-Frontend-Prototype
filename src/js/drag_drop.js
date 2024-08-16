@@ -16,12 +16,12 @@ boxes.forEach(box => {
 function dragStart(event) {
     event.dataTransfer.setData('text/plain', event.target.id);
     setTimeout(() => {
-        event.target.style.display = 'none';
+        event.target.classList.add('hide');  // Hide the dragged item during drag
     }, 0);
 }
 
 function dragEnd(event) {
-    event.target.style.display = 'block';
+    event.target.classList.remove('hide');  // Unhide the item after drag
 }
 
 function dragOver(event) {
@@ -40,8 +40,68 @@ function dragLeave(event) {
 function drop(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData('text');
-    const draggable = document.getElementById(id);
+    const originalDraggable = document.getElementById(id);
+    const box = event.target.closest('.box');
+
+    // Handle dropping into box1 from box2 (delete the item)
+    if (box.id === 'box1' && originalDraggable.parentNode.id === 'box2') {
+        originalDraggable.remove();
+    }
+
+    // Handle dropping into box2 from box1 (clone the item)
+    if (box.id === 'box2' && originalDraggable.parentNode.id === 'box1') {
+        const clone = originalDraggable.cloneNode(true);
+        clone.id = id + '-clone-' + Date.now(); // Ensure a unique ID for the clone
+        clone.classList.remove('hide');
+        clone.classList.add('draggable');
+        clone.draggable = true;
+
+        // Add event listeners to the cloned element to make it draggable
+        clone.addEventListener('dragstart', dragStart);
+        clone.addEventListener('dragend', dragEnd);
+
+        const afterElement = getDragAfterElement(box, event.clientY);
+        if (afterElement == null) {
+            box.appendChild(clone);
+        } else {
+            box.insertBefore(clone, afterElement);
+        }
+    }
+
+    // Handle reordering within box2
+    if (box.id === 'box2' && originalDraggable.parentNode.id === 'box2') {
+        const afterElement = getDragAfterElement(box, event.clientY);
+        if (afterElement == null) {
+            box.appendChild(originalDraggable);
+        } else {
+            box.insertBefore(originalDraggable, afterElement);
+        }
+    }
+
     event.target.classList.remove('over');
-    event.target.appendChild(draggable);
-    draggable.style.display = 'block';
 }
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+// Adding 'dragging' class when dragging starts
+document.addEventListener('dragstart', (event) => {
+    event.target.classList.add('dragging');
+});
+
+// Removing 'dragging' class when dragging ends
+document.addEventListener('dragend', (event) => {
+    event.target.classList.remove('dragging');
+});
