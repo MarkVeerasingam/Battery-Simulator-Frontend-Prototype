@@ -10,6 +10,13 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
+.container{
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
 .main-container {
   height: 100vh;
   display: flex;
@@ -20,18 +27,18 @@ body {
 
 .dropdown-container {
   margin-bottom: 20px;
-  width: 100%; /* Ensure full width */
+  width: 100%; 
   display: flex;
-  align-items: center; /* Align label and dropdown vertically */
-  justify-content: center; /* Center dropdown horizontally */
+  align-items: center; 
+  justify-content: center;
 }
 
 .dropdown-container label {
-  margin-right: 10px; /* Space between label and dropdown */
+  margin-right: 10px; 
 }
 
 #battery-model {
-  max-width: 140px; /* Adjust width to match radio buttons */
+  max-width: 140px; 
 }
 
 .radio-buttons-container {
@@ -39,9 +46,9 @@ body {
 }
 
 .radio-buttons {
-  display: flex; /* Arrange radio buttons in a row */
-  flex-wrap: wrap; /* Wrap to next line if needed */
-  justify-content: center; /* Center radio buttons horizontally */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
 }
 
 .custom-radio input {
@@ -50,7 +57,7 @@ body {
 
 .radio-btn {
   margin: 10px;
-  width: 120px; /* Consistent width with dropdown */
+  width: 120px; 
   height: 140px;
   border: 2px solid transparent;
   display: inline-block;
@@ -78,7 +85,7 @@ body {
 }
 
 .radio-btn .hobbies-icon {
-  width: 80px; /* Adjust width for better alignment */
+  width: 80px; 
   height: auto;
   position: absolute;
   top: 50%;
@@ -88,7 +95,7 @@ body {
 
 .radio-btn .hobbies-icon i {
   color: #8373e6;
-  line-height: 80px; /* Adjust line height for better vertical centering */
+  line-height: 80px;
   font-size: 60px;
 }
 
@@ -97,7 +104,7 @@ body {
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
-  margin: 10px 0 0; /* Adjust margin to position text correctly */
+  margin: 10px 0 0; 
 }
 
 .custom-radio input:checked + .radio-btn {
@@ -116,27 +123,47 @@ body {
 .fields-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align fields to the left */
-  //width: 100%;
-  max-width: 600px; /* Limit max width for better alignment */
+  align-items: flex-start; 
+  max-width: 600px; 
 }
 
 .field {
+  display: flex;
   width: 100%;
-  margin-bottom: 20px; /* Space between fields */
+  margin-bottom: 20px; 
 }
 
-textarea,
-input[type="text"],
-select {
-  width: 100%;
+.box{
+  width: 200px;
+  height: 300px;
+  margin: 0 20px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
+  border: 2px dashed #ccc;
+  background: #fff;
 }
 
-textarea {
-  height: 150px; /* Adjust height for textarea */
-  resize: vertical; /* Allow vertical resizing */
+.box.over{
+  border-color: #0077b6;
+  background: #e0f7ff;
+  transition: .3s ease;
+}
+
+.draggable{
+  padding: 10px;
+  margin: 10px;
+  background: #8373e6;
+  color: #fff;
+  cursor: grab;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.draggable:active{
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.draggable:hover{
+  background: #023e8a;
 }

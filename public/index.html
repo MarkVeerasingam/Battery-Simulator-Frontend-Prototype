@@ -7,6 +7,7 @@
     <title>Battery Simulator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module" src="../src/js/radio-select.js"></script>
+    <script type="module" src="../src/js/drag_drop.js"></script>
     <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts Link -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap"
@@ -71,8 +72,14 @@
         <div class="fields-container">
             <!-- Display the text area for experiment -->
             <div id="experiment-field" class="field" style="display:none">
-                <textarea id="experiment-textarea"
-                    placeholder="Discharge at C/5 for 10 hours or until 2.5 V, Rest for 1 hour, Charge at 1 A until 3.5 V, Hold at 3.5 V until 10 mA, Rest for 1 hour"></textarea>
+                <div class="box" id="box1">
+                    <p class="draggable" draggable="true" id="item1">Item1</p>
+                    <p class="draggable" draggable="true" id="item2">Item2</p>
+                    <p class="draggable" draggable="true" id="item3">Item3</p>
+                </div>
+                <div class="box" id="box2">
+                    <!--Dropped Items will appear here-->
+                </div>
             </div>
             <!-- Display the field for time evaluation -->
             <div id="timeEval-field" class="field" style="display:none">
