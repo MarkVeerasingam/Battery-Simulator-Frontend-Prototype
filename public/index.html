@@ -20,7 +20,8 @@
 
 <body>
     <div class="main-container">
-        <div class="left-container">
+        <!--Input form for cell simulation-->
+        <form>
             <div class="dropdown-container">
                 <label for="battery-model">Select Battery Model</label>
                 <select id="battery-model">
@@ -31,7 +32,7 @@
                 </select>
             </div>
             <div class="radio-buttons-container">
-                <form class="radio-buttons">
+                <div class="radio-buttons">
                     <!-- Drive Cycle -->
                     <label class="custom-radio">
                         <input type="radio" name="simulation" value="driveCycle" />
@@ -67,9 +68,9 @@
                             </div>
                         </span>
                     </label>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
         <div class="fields-container">
             <!-- Display the text area for experiment -->
             <div id="experiment-field" class="field" style="display:none">
