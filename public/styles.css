@@ -133,6 +133,23 @@ body {
   margin-bottom: 20px; 
 }
 
+.time-eval-field {
+  width: 100%; 
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#driveCycle-field select {
+  width: 100%; 
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+
 .box{
   width: 400px;
   margin: 0 10px;
@@ -171,4 +188,27 @@ body {
 
 .draggable:hover{
   background: #023e8a;
+}
+
+.submit-btn {
+  background-color: #8373e6; 
+  color: #fff; 
+  border: none;
+  padding: 12px 24px; 
+  border-radius: 8px; 
+  font-size: 16px; 
+  font-weight: 500; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.submit-btn:hover {
+  background-color: #6450b5; 
+  transform: scale(1.05); 
+}
+
+.submit-btn:active {
+  background-color: #483590;
+  transform: scale(0.98); 
 }
