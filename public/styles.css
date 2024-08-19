@@ -190,6 +190,11 @@ body {
   background: #023e8a;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center; 
+}
+
 .submit-btn {
   background-color: #8373e6; 
   color: #fff; 
