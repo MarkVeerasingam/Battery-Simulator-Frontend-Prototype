@@ -22,14 +22,23 @@
             <!--Input form for cell simulation-->
             <form>
                 <!--choose battery cell-->
-                <div class="dropdown-container">
-                    <label for="battery-model">Select Battery Model</label>
-                    <select id="battery-model">
-                        <option value="">Choose a model</option>
-                        <option value="model1">Model 1</option>
-                        <option value="model2">Model 2</option>
-                        <option value="model3">Model 3</option>
-                    </select>
+                <div class="dropdown-menu">
+                    <li><a href="#">Select Battery Model</a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="#">LFP</a>
+                                <ul class="dropdown-submenu2">
+                                    <li><a href="#" value="model1">LFP Model1</a></li>
+                                    <li><a href="#" value="model2">LFP Model2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">NMC</a>
+                                <ul class="dropdown-submenu2">
+                                    <li><a href="#" value="model3">NMC Model1</a></li>
+                                    <li><a href="#" value="model3">NMC Model2</a></li>
+                                </ul>
+                            </li>
+                    </li>
+                    </ul>
                 </div>
                 <!--choose simulation scenario-->
                 <div class="radio-buttons-container">
@@ -75,8 +84,7 @@
                     <!-- Display the text area for experiment -->
                     <div id="experiment-field" class="field" style="display:none">
                         <div class="box" id="box1">
-                            <p class="draggable" draggable="true" id="item1">Discharge at C/5 for 10 hours or until 2.5
-                                V
+                            <p class="draggable" draggable="true" id="item1">Discharge at C/5 for 10 hours or until 2.5V
                             </p>
                             <p class="draggable" draggable="true" id="item2">Rest for 1 hour</p>
                             <p class="draggable" draggable="true" id="item3">Charge at 1 A until 3.5 V</p>
