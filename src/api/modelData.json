@@ -1,7 +1,6 @@
 {
-    "batteryChemistries": [
+    "batteryModel": [
         {
-            "id": "NMC",
             "chemistry": "NMC",
             "models": [
                 "nmc_pouch_cell_BPX.json",
@@ -9,7 +8,6 @@
             ]
         },
         {
-            "id": "LFP",
             "chemistry": "LFP",
             "models": [
                 "lfp_18650_cell_BPX.json"

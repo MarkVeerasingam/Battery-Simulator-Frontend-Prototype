@@ -7,8 +7,8 @@
     <title>Battery Simulator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
-    <script type="module" src="../src/js/radio-select.js"></script>
-    <script type="module" src="../src/js/sortable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script type="module" src="../src/js/app.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap"
         rel="stylesheet" />
@@ -17,100 +17,124 @@
 </head>
 
 <body>
-    <div class="main-container">
-        <section id="simulation-section">
-            <!--Input form for cell simulation-->
-            <form>
-                <!--choose battery cell-->
-                <div class="dropdown-menu">
-                    <li><a href="#">Select Battery Model</a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="#">LFP</a>
-                                <ul class="dropdown-submenu2">
-                                    <li><a href="#" value="model1">LFP Model1</a></li>
-                                    <li><a href="#" value="model2">LFP Model2</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">NMC</a>
-                                <ul class="dropdown-submenu2">
-                                    <li><a href="#" value="model3">NMC Model1</a></li>
-                                    <li><a href="#" value="model3">NMC Model2</a></li>
-                                </ul>
-                            </li>
-                    </li>
-                    </ul>
-                </div>
-                <!--choose simulation scenario-->
-                <div class="radio-buttons-container">
-                    <div class="radio-buttons">
-                        <!-- Drive Cycle -->
-                        <label class="custom-radio">
-                            <input type="radio" name="simulation" value="driveCycle" />
-                            <span class="radio-btn">
-                                <i class="las la-check"></i>
-                                <div class="hobbies-icon">
-                                    <i class="las la-car"></i>
-                                    <h3>Drive Cycle</h3>
-                                </div>
-                            </span>
-                        </label>
+    <!--Progress sidebar-->
+    <div id="sidebar">
+        <ul class="progress-bar">
+            <li><a href="#simulation-section">Simulation</a></li>
+            <li><a href="#results-section">Results</a></li>
+            <li><a href="#save-section">Save Simulation</a></li>
+        </ul>
+    </div>
+    <main>
+        <!-- Input form for cell simulation -->
+        <form id="simulation-form">
+            <!-- Simulation Section -->
+            <div id="simulation-section" class="main-container">
+                <div class="content">
+                    <!-- Choose battery cell -->
+                    <div class="dropdown-container">
+                        <label for="battery-chemistry">Select Battery Chemistry</label>
+                        <select id="battery-chemistry" name="battery-chemistry">
+                            <option value="">Select Battery Chemistry</option>
+                        </select>
 
-                        <!-- Experiment -->
-                        <label class="custom-radio">
-                            <input type="radio" name="simulation" value="experiment" />
-                            <span class="radio-btn">
-                                <i class="las la-check"></i>
-                                <div class="hobbies-icon">
-                                    <i class="las la-flask"></i>
-                                    <h3>Experiment</h3>
-                                </div>
-                            </span>
-                        </label>
-
-                        <!-- Time Evaluation -->
-                        <label class="custom-radio">
-                            <input type="radio" name="simulation" value="timeEval" />
-                            <span class="radio-btn">
-                                <i class="las la-check"></i>
-                                <div class="hobbies-icon">
-                                    <i class="las la-clock"></i>
-                                    <h3>Time Evaluation</h3>
-                                </div>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <div class="fields-container">
-                    <!-- Display the text area for experiment -->
-                    <div id="experiment-field" class="field" style="display:none">
-                        <div class="box" id="box1">
-                            <p class="draggable" draggable="true" id="item1">Discharge at C/5 for 10 hours or until 2.5V
-                            </p>
-                            <p class="draggable" draggable="true" id="item2">Rest for 1 hour</p>
-                            <p class="draggable" draggable="true" id="item3">Charge at 1 A until 3.5 V</p>
-                            <p class="draggable" draggable="true" id="item4">Hold at 3.5 V until 10 mA</p>
-                        </div>
-                        <div class="box" id="box2">
-                            <!--Dropped Items will appear here-->
-                        </div>
-                    </div>
-                    <!-- Display the field for time evaluation -->
-                    <div id="timeEval-field" class="field" style="display:none">
-                        <input type="text" placeholder="[0, 7200]" class="time-eval-field">
-                    </div>
-                    <!-- Display the drop down for driveCycle -->
-                    <div id="driveCycle-field" class="field" style="display:none">
-                        <select>
-                            <option value="">Select Drive Cycle</option>
+                        <label for="cell-model">Select Cell Model</label>
+                        <select id="cell-model" name="cell-model" disabled>
+                            <option value="">Select Cell Model</option>
                         </select>
                     </div>
                 </div>
-                <div class="button-container">
-                    <input type="submit" value="Simulate" class="submit-btn">
+
+                <!-- Simulation scenario section -->
+                <div class="content">
+                    <div class="radio-buttons-container">
+                        <div class="radio-buttons">
+                            <!-- Drive Cycle -->
+                            <label class="custom-radio">
+                                <input type="radio" name="simulation" value="driveCycle" />
+                                <span class="radio-btn">
+                                    <i class="las la-check"></i>
+                                    <div class="hobbies-icon">
+                                        <i class="las la-car"></i>
+                                        <h3>Drive Cycle</h3>
+                                    </div>
+                                </span>
+                            </label>
+
+                            <!-- Experiment -->
+                            <label class="custom-radio">
+                                <input type="radio" name="simulation" value="experiment" />
+                                <span class="radio-btn">
+                                    <i class="las la-check"></i>
+                                    <div class="hobbies-icon">
+                                        <i class="las la-flask"></i>
+                                        <h3>Experiment</h3>
+                                    </div>
+                                </span>
+                            </label>
+
+                            <!-- Time Evaluation -->
+                            <label class="custom-radio">
+                                <input type="radio" name="simulation" value="timeEval" />
+                                <span class="radio-btn">
+                                    <i class="las la-check"></i>
+                                    <div class="hobbies-icon">
+                                        <i class="las la-clock"></i>
+                                        <h3>Time Evaluation</h3>
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="fields-container">
+                        <!-- Display the text area for experiment -->
+                        <div id="experiment-field" class="field" style="display:none">
+                            <div class="box" id="box1">
+                                <p class="draggable" draggable="true" id="item1">Discharge at C/5 for 10 hours or until
+                                    2.5V
+                                </p>
+                                <p class="draggable" draggable="true" id="item2">Rest for 1 hour</p>
+                                <p class="draggable" draggable="true" id="item3">Charge at 1 A until 3.5 V</p>
+                                <p class="draggable" draggable="true" id="item4">Hold at 3.5 V until 10 mA</p>
+                            </div>
+                            <div class="box" id="box2">
+                                <!-- Dropped Items will appear here -->
+                            </div>
+                        </div>
+                        <!-- Display the field for time evaluation -->
+                        <div id="timeEval-field" class="field" style="display:none">
+                            <input type="text" placeholder="[0, 7200]" class="time-eval-field">
+                        </div>
+                        <!-- Display the drop down for driveCycle -->
+                        <div id="driveCycle-field" class="field" style="display:none">
+                            <select>
+                                <option value="">Select Drive Cycle</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <input type="submit" value="Simulate" class="submit-btn">
+                    </div>
                 </div>
-            </form>
-        </section>
-    </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="main-container">
+                <div class="content">
+                    <h2>Results will be displayed here.</h2>
+                </div>
+            </div>
+            <!-- Save Section -->
+            <div id="save-section" class="main-container">
+                <div class="content">
+                    <h2>Results can be saved to the users database or exported via rest API here.</h2>
+                </div>
+            </div>
+        </form>
+    </main>
+
 </body>
 
 </html>

@@ -1,20 +1,117 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --text: #333; 
+  --background: #f4f4f9; 
+  --secondary: #ccc; 
+  --hover: #8373e6; 
+  --accent: #8373e6; 
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  width: 100%;
+  gap: 5%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Raleway";
 }
 
-.container{
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  transition: all ease 0.1s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  opacity: 0;
+  text-wrap: nowrap;
+  display: block;
+}
+
+/*sidebar + progress bar*/
+#sidebar {
+  position: relative;
   display: flex;
-  height: 100vh;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+  width: 20%;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.progress-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 2px solid var(--secondary);
+  border-radius: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.content {
+  position: relative;
+  max-width: 50%;
+  padding: 0;
+  
+}
+
+.section {
+  height: 100vh;
+}
+
+li {
+  list-style: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--secondary);
+  border-radius: 1rem;
+}
+
+li:hover {
+  background-color: var(--hover);
+  color: #fff;
+}
+
+.progress-bar:hover li {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.progress-bar:hover a {
+  opacity: 1;
+}
+
+li.active {
+  background-color: var(--accent);
+}
+
+@media screen and (max-width: 800px) {
+  #sidebar {
+    display: none;
+  }
+  .content {
+    max-width: 100%;
+  }
+  main {
+    padding: 0 5%;
+  }
+  .section {
+    height: auto;
+  }
 }
 
 .main-container {
@@ -25,87 +122,49 @@ body {
   flex-direction: column;
 }
 
-/* Remove bullet points from lists */
-.dropdown-submenu, .dropdown-submenu2 {
-  list-style-type: none;
-  padding-left: 0; 
-  margin: 0; 
-}
-
-/*dropdown main-level*/
-.dropdown-menu > li, .dropdown-menu a {
-  display: inline-block;
-}
-
-.dropdown-menu li {
-  position: relative; 
-}
-
-.dropdown-menu a {
-  text-decoration: none;
-  display: block;
-  padding: 10px;
-  transition: background-color .22s ease, color .22s ease
-}
-
-.dropdown-menu a:hover {
-  background-color: #c3c3c367;
-  color: #fff;
-}
-
-.dropdown-menu {
+/* Dropdown container */
+.dropdown-container {
   margin-bottom: 20px;
-  width: auto; 
   display: flex;
-  align-items: center; 
-  justify-content: center;
+  flex-direction: column; 
 }
 
-.dropdown-menu label {
-  margin-right: 10px; 
+/* Specific styles for battery model dropdown */
+#battery-chemistry {
+  width: 200px; 
+  padding: 6px;
+  border: 2px solid #8373e6;
+  border-radius: 4px; 
+  background-color: #f4f4f9; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  color: #333; 
+  font-size: 14px; 
+  margin-bottom: 10px; 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
-/*dropdown sub-level 1*/
-.dropdown-submenu {
-  position: relative;
-  background-color: #c3c3c367;
-  width: auto;
-  left: 0;
-  display: none;
+/* Apply different styles to cell model dropdown to match */
+#cell-model {
+  width: 200px; 
+  padding: 6px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 20px; 
 }
 
-/*dropdown sub-level 2*/
-.dropdown-submenu2 {
-  position: absolute;
-  left: 100%; 
-  top: 0; 
-  background-color: #c3c3c367;
-  width: auto;
-  display: none;
-}
-
-/*Show dropdown menu on hover*/
-.dropdown-menu li:hover > .dropdown-submenu {
-  display: block;
-}
-
-.dropdown-submenu li:hover > .dropdown-submenu2 {
-  display: block;
-}
-
-
-#battery-model {
-  max-width: 140px; 
-}
-
+/* Radio buttons styling */
 .radio-buttons-container {
   width: 100%;
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; /* Adjust spacing from dropdown */
 }
 
 .radio-buttons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .custom-radio input {
@@ -177,6 +236,7 @@ body {
   transform: scale(0.85);
 }
 
+/* Fields container setup */
 .fields-container {
   display: flex;
   flex-direction: column;
@@ -190,6 +250,7 @@ body {
   margin-bottom: 20px; 
 }
 
+/* Time evaluation input field */
 .time-eval-field {
   width: 100%; 
   padding: 8px;
@@ -198,6 +259,7 @@ body {
   box-sizing: border-box;
 }
 
+/* Drive cycle dropdown styling */
 #driveCycle-field select {
   width: 100%; 
   padding: 8px;
@@ -206,10 +268,11 @@ body {
   box-sizing: border-box;
 }
 
-
-.box{
+/* Box styling for draggable items */
+.box {
   width: 400px;
-  margin: 0 10px;
+  margin: 0 10px; 
+  display: flex; 
   padding: 10px;
   border: 2px dashed #ccc;
   background: #fff;
@@ -219,13 +282,14 @@ body {
   min-height: 200px; 
 }
 
-.box.over{
+.box.over {
   border-color: #0077b6;
   background: #e0f7ff;
   transition: .3s ease;
 }
 
-.draggable{
+/* Draggable items styling */
+.draggable {
   padding: 10px;
   margin: 10px;
   background: #8373e6;
@@ -235,23 +299,25 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
   max-width: 100%; 
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
-.draggable:active{
+.draggable:active {
   cursor: grabbing;
   transform: scale(1.05);
 }
 
-.draggable:hover{
+.draggable:hover {
   background: #023e8a;
 }
 
+/* Button container setup */
 .button-container {
   display: flex;
   justify-content: center; 
 }
 
+/* Submit button styling */
 .submit-btn {
   background-color: #8373e6; 
   color: #fff; 
