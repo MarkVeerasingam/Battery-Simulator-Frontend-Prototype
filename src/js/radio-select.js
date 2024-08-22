@@ -10,7 +10,7 @@ $(document).ready(function () {
             $('#timeEval-field').hide("slow");
             $('#driveCycle-field').hide("slow");
             $('#experiment-field').show("slow");
-        } else if (selection === "driveCycle") {
+        } else if (selection === "drive_cycle") {
             $('#experiment-field').hide("slow");
             $('#timeEval-field').hide("slow");
             $('#driveCycle-field').show("slow");
@@ -18,7 +18,7 @@ $(document).ready(function () {
             $('#driveCycle-field').empty();
 
             await populateDriveCycleDropdown();
-        } else if (selection === "timeEval") {
+        } else if (selection === "time_eval") {
             $('#experiment-field').hide("slow");
             $('#driveCycle-field').hide("slow");
             $('#timeEval-field').show("slow");

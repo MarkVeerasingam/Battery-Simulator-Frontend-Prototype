@@ -14,8 +14,10 @@ $(document).ready(function () {
             // Store models for each chemistry
             cellModels[item.chemistry] = item.models.map(function (model) {
                 return {
-                    value: model,
-                    text: model.replace(/_BPX\.json$/, '') // Remove _BPX.json for display text
+                    // Remove .json for display text and value - not sure how to handle this in the future.
+                    // should a user name the files they upload or should it be with raw json to save a headache
+                    value: model.replace(/\.json$/i, ''),
+                    text: model.replace(/\.json$/i, '')
                 };
             });
         });

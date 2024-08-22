@@ -8,7 +8,7 @@ export async function getDriveCycleData() {
         const json = await response.json();
 
         //retries from api
-        return json.driveCycles;
+        return json.drive_cycle;
     } catch (error) {
         console.error('Error fetching data:', error.message);
         return []; // Return an empty array on error

@@ -3,7 +3,7 @@
         {
             "chemistry": "NMC",
             "models": [
-                "nmc_pouch_cell_BPX.json",
+                "NMC_Pouch_cell.json",
                 "AE_gen1_BPX.json"
             ]
         },

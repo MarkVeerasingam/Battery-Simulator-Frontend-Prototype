@@ -6,18 +6,18 @@ export async function populateDriveCycleDropdown() {
     $('#driveCycle-field')
         .append(
             $(document.createElement('label')).prop({
-                for: 'driveCycles'
+                for: 'drive_cycle'
             })
         )
         .append(
             $(document.createElement('select')).prop({
-                id: 'driveCycles',
-                name: 'driveCycles'
+                id: 'drive_cycle',
+                name: 'drive_cycle'
             })
         );
 
     for (const val of values) {
-        $('#driveCycles').append($(document.createElement('option')).prop({
+        $('#drive_cycle').append($(document.createElement('option')).prop({
             value: val,
             text: val.charAt(0).toUpperCase() + val.slice(1)
         }));
