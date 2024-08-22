@@ -1,3 +1,5 @@
+import { simulate } from './simulate.js';
+
 function getFormData() {
     // gets the form data of the simulation input, currently just battery chemistry and it's respective model
     return {
@@ -43,10 +45,11 @@ function buildPostData(simulationData) {
     };
 }
 
-export function submitForm() {
+// handles form submission to simulate a battery
+export async function submitForm() {
     const formEl = document.querySelector('#simulation-form');
 
-    formEl.addEventListener('submit', event => {
+    formEl.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         // Get form data and simulation type
@@ -58,28 +61,19 @@ export function submitForm() {
 
         const postData = buildPostData(simulationData);
         console.log('Form Data:', postData);
-        simulate(postData);
+
+        try {
+            await simulate(postData);
+            scrollToResults();
+        } catch (error) {
+            console.error('Error occurred during simulation:', error);
+        }
     });
 }
 
-async function simulate(data) {
-    const url = "http://localhost:8084/simulate";
-
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            console.error('Failed to submit simulation data', await response.text());
-        } else {
-            console.log('Simulation request successful');
-        }
-    } catch (error) {
-        console.error('Error occurred while submitting data:', error);
-    }
+// animation to scroll to results section
+function scrollToResults() {
+    $('html, body').animate({
+        scrollTop: $('#results-section').offset().top
+    }, 50); // 50 ms scroll animation
 }
