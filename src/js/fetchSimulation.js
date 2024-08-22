@@ -1,4 +1,4 @@
-export async function simulate(data) {
+export async function fetchSimulation(data) {
     const url = "http://localhost:8084/simulate";
 
     try {
@@ -13,9 +13,13 @@ export async function simulate(data) {
         if (!response.ok) {
             const errorText = await response.text();
             throw new Error(`Failed to submit simulation data: ${errorText}`);
-        } else {
-            console.log('Simulation request successful');
         }
+
+        const datapoints = await response.json();
+        console.log(response);
+        console.log(datapoints);
+
+        return datapoints;
 
     } catch (error) {
         console.error('Error occurred while submitting data:', error);

@@ -14,7 +14,7 @@ $(document).ready(function () {
             // Store models for each chemistry
             cellModels[item.chemistry] = item.models.map(function (model) {
                 return {
-                    // Remove .json for display text and value - not sure how to handle this in the future.
+                    // Remove .json for display text and value - not sure how to handle this in the future...
                     // should a user name the files they upload or should it be with raw json to save a headache
                     value: model.replace(/\.json$/i, ''),
                     text: model.replace(/\.json$/i, '')
@@ -26,7 +26,7 @@ $(document).ready(function () {
         $('#battery-chemistry').change(function () {
             const batteryType = $(this).val();
             const $cellModel = $('#cell-model');
-            $cellModel.empty(); // Clear existing options
+            $cellModel.empty();
             $cellModel.append('<option value="">Select Cell Model</option>'); // Reset to default
 
             if (cellModels[batteryType]) {

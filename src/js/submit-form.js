@@ -1,14 +1,14 @@
-import { simulate } from './simulate.js';
+import { fetchSimulation } from './fetchSimulation.js';
 
 function getFormData() {
-    // gets the form data of the simulation input, currently just battery chemistry and it's respective model
+    //gets the form data of the simulation input, currently just battery chemistry and it's respective model
     return {
         battery_chemistry: document.getElementById('battery-chemistry').value,
         bpx_battery_models: document.getElementById('cell-model').value
     };
 }
 
-//  get simulation scenario and it's respective simulation-specific data i.e. (drive_cycle = file, experiment = string list, time_eval = input)
+//get simulation scenario and it's respective simulation-specific data i.e. (drive_cycle = file, experiment = string list, time_eval = input)
 function getSimulationData(simulationType) {
     const simulationData = { type: simulationType };
 
@@ -35,13 +35,13 @@ function buildPostData(simulationData) {
         battery_chemistry: document.getElementById('battery-chemistry').value,
         bpx_battery_models: document.getElementById('cell-model').value,
         electrochemical_model: 'DFN', // Static for now
-        solver: 'CasadiSolver', // Static 
+        solver: 'CasadiSolver', // Static val
         tolerance: {
-            atol: 1e-6, // Static 
-            rtol: 1e-6  // Static 
+            atol: 1e-6, // Static val
+            rtol: 1e-6  // Static val
         },
         simulation: simulationData,
-        display_params: ["Terminal voltage [V]", "Current [A]", "Discharge capacity [A.h]"] // Static for now
+        display_params: ["Terminal voltage [V]", "Current [A]", "Ambient temperature [C]"] // Static for now
     };
 }
 
@@ -63,7 +63,8 @@ export async function submitForm() {
         console.log('Form Data:', postData);
 
         try {
-            await simulate(postData);
+            // wait for simulation to finish, then scroll to the results section
+            await fetchSimulation(postData);
             scrollToResults();
         } catch (error) {
             console.error('Error occurred during simulation:', error);
