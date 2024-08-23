@@ -1,4 +1,5 @@
 import { fetchSimulation } from './fetchSimulation.js';
+import { updateCharts, processSimulationData } from './graphs.js'
 
 function getFormData() {
     //gets the form data of the simulation input, currently just battery chemistry and it's respective model
@@ -63,6 +64,12 @@ export async function submitForm() {
         try {
             // fetch the simulation
             const datapoints = await fetchSimulation(postData);
+
+            // Process data for graphs
+            const { time, processedData } = processSimulationData(datapoints, postData.display_params);
+
+            // Update the charts with processed data
+            updateCharts(time, processedData);
 
             // when simulation is finished, then scroll to the results section
             scrollToResults();
