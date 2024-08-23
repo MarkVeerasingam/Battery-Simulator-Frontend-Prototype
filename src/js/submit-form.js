@@ -22,11 +22,9 @@ function getSimulationData(simulationType) {
     } else if (simulationType === 'drive_cycle') {
         const driveCycleField = document.querySelector('#driveCycle-field select').value;
         simulationData.drive_cycle = {
-            chemistry: document.getElementById('battery-chemistry').value,
             drive_cycle_file: driveCycleField
         };
     }
-
     return simulationData;
 }
 
@@ -63,8 +61,10 @@ export async function submitForm() {
         console.log('Form Data:', postData);
 
         try {
-            // wait for simulation to finish, then scroll to the results section
-            await fetchSimulation(postData);
+            // fetch the simulation
+            const datapoints = await fetchSimulation(postData);
+
+            // when simulation is finished, then scroll to the results section
             scrollToResults();
         } catch (error) {
             console.error('Error occurred during simulation:', error);
