@@ -11,16 +11,15 @@ export async function fetchSimulation(data) {
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Failed to submit simulation data: ${errorText}`);
+            const errorData = await response.json(); // Attempt to get JSON error details
+            throw new Error(errorData.error || "Simulation failed");
         }
 
         const datapoints = await response.json();
         console.log(datapoints);
         return datapoints;
     } catch (error) {
-        console.error('Error occurred while submitting data:', error);
+        console.error('Error occurred while submitting data:', error.message);
         throw error;
     }
 }
-

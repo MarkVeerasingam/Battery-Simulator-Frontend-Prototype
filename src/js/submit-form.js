@@ -74,6 +74,7 @@ export async function submitForm() {
             // when simulation is finished, then scroll to the results section
             scrollToResults();
         } catch (error) {
+            document.querySelector('#error-message').textContent = `Simulation failed: ${error.message}`;
             console.error('Error occurred during simulation:', error);
         }
     });
