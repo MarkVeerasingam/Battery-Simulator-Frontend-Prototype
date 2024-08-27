@@ -24,7 +24,7 @@ const current_voltage_chart = createVoltageCurrentChart(ctx1, 'line', [], [
 const ctx2 = document.getElementById('temperature_chart').getContext('2d');
 const temperature_chart = createTemperatureChart(ctx2, 'line', [], [
     {
-        label: 'Ambient Temperature [C]',
+        label: 'X-averaged cell temperature [C]',
         data: [],
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -52,8 +52,8 @@ export function updateCharts(times, processedData) {
 
     updateChart(temperature_chart, times, [
         {
-            label: 'Ambient Temperature [C]',
-            data: processedData['Ambient temperature [C]'],
+            label: 'X-averaged cell temperature [C]',
+            data: processedData['X-averaged cell temperature [C]'],
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             fill: false

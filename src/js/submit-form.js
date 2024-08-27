@@ -40,7 +40,7 @@ function buildPostData(simulationData) {
             rtol: 1e-6  // Static val
         },
         simulation: simulationData,
-        display_params: ["Terminal voltage [V]", "Current [A]", "Ambient temperature [C]"] // Static for now
+        display_params: ["Terminal voltage [V]", "Current [A]", "X-averaged cell temperature [C]"] // Static for now
     };
 }
 
