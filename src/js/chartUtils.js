@@ -1,4 +1,9 @@
 export function createVoltageCurrentChart(ctx, chartType, labels, datasets) {
+
+    datasets.forEach(dataset => {
+        dataset.pointRadius = 0; // Remove point markers
+    });
+
     return new Chart(ctx, {
         type: chartType,
         data: {
@@ -6,11 +11,12 @@ export function createVoltageCurrentChart(ctx, chartType, labels, datasets) {
             datasets: datasets
         },
         options: {
+            responsive: true,
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Time'
+                        text: 'Time(s)'
                     }
                 },
                 'y-voltage': {
@@ -38,6 +44,12 @@ export function createVoltageCurrentChart(ctx, chartType, labels, datasets) {
 }
 
 export function createTemperatureChart(ctx, chartType, labels, datasets) {
+
+    datasets.forEach(dataset => {
+        dataset.pointRadius = 0; // Remove point markers
+    });
+
+
     return new Chart(ctx, {
         type: chartType,
         data: {
@@ -45,11 +57,12 @@ export function createTemperatureChart(ctx, chartType, labels, datasets) {
             datasets: datasets
         },
         options: {
+            responsive: true,
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Time'
+                        text: 'Time(s)'
                     }
                 },
                 y: {
@@ -65,6 +78,11 @@ export function createTemperatureChart(ctx, chartType, labels, datasets) {
 }
 
 export function updateChart(chart, labels, datasets) {
+
+    datasets.forEach(dataset => {
+        dataset.pointRadius = 0; // Remove point markers
+    });
+
     chart.data.labels = labels;
     chart.data.datasets = datasets;
     chart.update();
