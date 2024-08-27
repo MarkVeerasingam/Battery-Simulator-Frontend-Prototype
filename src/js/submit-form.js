@@ -34,6 +34,8 @@ function buildPostData(simulationData) {
         battery_chemistry: document.getElementById('battery-chemistry').value,
         bpx_battery_models: document.getElementById('cell-model').value,
         electrochemical_model: 'DFN', // Static for now
+        cell_geometry: "arbitrary",
+        thermal_model: "lumped",
         solver: 'CasadiSolver', // Static val
         tolerance: {
             atol: 1e-6, // Static val
