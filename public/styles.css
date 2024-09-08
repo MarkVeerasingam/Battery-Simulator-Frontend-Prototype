@@ -142,12 +142,29 @@ li.active {
   justify-content: center; 
 }
 
+#current_voltage_chart {
+    width: 600px !important; 
+    height: 300px !important; 
+}
+
+#temperature_chart { 
+    width: 600px !important; 
+    height: 300px !important; 
+}
+
+/* Wrapper to contain both the dropdowns and the button */
+.dropdown-container-wrapper {
+  position: relative; 
+  display: flex;
+  align-items: flex-start; 
+  gap: 20px; 
+}
 
 /* Dropdown container */
 .dropdown-container {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column; 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; /* Space between the dropdowns */
 }
 
 /* Specific styles for battery model dropdown */
@@ -173,6 +190,65 @@ li.active {
   box-sizing: border-box;
   margin-bottom: 20px; 
 }
+
+/* Advanced Features Button */
+.advanced-features-btn {
+  padding: 8px 16px;
+  background-color: #8373e6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0; 
+  align-self: flex-start; 
+}
+
+.advanced-features-btn:hover {
+  background-color: #6450b5;
+}
+
+/* Advanced Features Menu Styling */
+.advanced-features {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f4f4f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px; 
+  max-height: 0; /* Initially hidden */
+  overflow: hidden; /* Hide overflowing content */
+  transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+}
+
+.advanced-features.hidden {
+  display: none;
+}
+
+.advanced-features.expanded {
+  max-height: 300px; /* Adjust this value based on your content */
+  padding: 10px; /* Restore padding when expanded */
+}
+
+/* Advanced Features Hidden State */
+.advanced-features.hidden {
+  max-height: 0;
+  padding: 0 10px; /* Remove top and bottom padding */
+}
+
+/* Specific styles for new dropdowns in advanced features */
+#cell-geometry, #thermal-model, #solver-mode {
+  width: 100%; 
+  padding: 6px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
 
 /* Radio buttons styling */
 .radio-buttons-container {

@@ -1,14 +1,6 @@
 import { fetchSimulation } from './fetchSimulation.js';
 import { updateCharts, processSimulationData } from './graphs.js'
 
-function getFormData() {
-    //gets the form data of the simulation input, currently just battery chemistry and it's respective model
-    return {
-        battery_chemistry: document.getElementById('battery-chemistry').value,
-        bpx_battery_models: document.getElementById('cell-model').value
-    };
-}
-
 //get simulation scenario and it's respective simulation-specific data i.e. (drive_cycle = file, experiment = string list, time_eval = input)
 function getSimulationData(simulationType) {
     const simulationData = { type: simulationType };
@@ -31,15 +23,23 @@ function getSimulationData(simulationType) {
 
 function buildPostData(simulationData) {
     return {
-        battery_chemistry: document.getElementById('battery-chemistry').value,
-        bpx_battery_models: document.getElementById('cell-model').value,
-        electrochemical_model: 'DFN', // Static for now
-        cell_geometry: "arbitrary",
-        thermal_model: "lumped",
+        battery_model: {
+            battery_chemistry: document.getElementById('battery-chemistry').value,
+            bpx_battery_models: document.getElementById('cell-model').value
+        },
+        electrochemical_model: {
+            model: 'DFN',
+            cell_geometry: document.getElementById('cell-geometry').value || "arbitrary", // optional, default is 'arbitrary' in pybamm
+            thermal_model: document.getElementById('thermal-model').value || "isothermal"    // optional, default is'lumped' in pybamm
+        },
         solver: 'CasadiSolver', // Static val
-        tolerance: {
-            atol: 1e-6, // Static val
-            rtol: 1e-6  // Static val
+        "solver_model": {
+            "solver": "IDAKLUSolver",
+            "tolerance": {
+                "atol": 1e-6,
+                "rtol": 1e-6
+            },
+            "mode": document.getElementById('solver-mode').value || "safe"  // optional, default is'safe' in pybamm
         },
         simulation: simulationData,
         display_params: ["Terminal voltage [V]", "Current [A]", "X-averaged cell temperature [C]"] // Static for now
@@ -54,7 +54,6 @@ export async function submitForm() {
         event.preventDefault();
 
         // Get form data and simulation type
-        const formData = getFormData();
         const simulationType = document.querySelector('input[name="simulation"]:checked').value;
 
         // Get simulation-specific data

@@ -4,6 +4,7 @@ import './radio-select.js';
 import './sortable.js';
 import './progress-bar.js';
 import { submitForm } from './submit-form.js';
+import './advanceFeatures.js';
 
 $(document).ready(function () {
     console.log('App initialized');

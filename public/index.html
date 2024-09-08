@@ -32,18 +32,43 @@
             <!-- Simulation Section -->
             <div id="simulation-section" class="main-container">
                 <div class="content">
-                    <!-- Choose battery cell -->
-                    <div class="dropdown-container">
-                        <label for="battery-chemistry">Select Battery Chemistry</label>
-                        <select id="battery-chemistry" name="battery-chemistry">
-                            <option value="">Select Battery Chemistry</option>
+                    <div class="dropdown-container-wrapper">
+
+                        <div class="dropdown-container">
+                            <label for="battery-chemistry">Select Battery Chemistry</label>
+                            <select id="battery-chemistry" name="battery-chemistry">
+                                <option value="">Select Battery Chemistry</option>
+                            </select>
+
+                            <label for="cell-model">Select Cell Model</label>
+                            <select id="cell-model" name="cell-model" disabled>
+                                <option value="">Select Cell Model</option>
+                            </select>
+                        </div>
+                        <!-- Advanced Features Button -->
+                        <button class="advanced-features-btn">Advanced Features</button>
+                    </div>
+                    <!-- Advanced Features Menu -->
+                    <div id="advanced-features-menu" class="advanced-features hidden">
+                        <select id="cell-geometry">
+                            <option value="">Select Cell Geometry</option>
+                            <option value="arbitrary">Arbitrary</option>
+                            <option value="pouch">Pouch</option>
                         </select>
 
-                        <label for="cell-model">Select Cell Model</label>
-                        <select id="cell-model" name="cell-model" disabled>
-                            <option value="">Select Cell Model</option>
+                        <select id="thermal-model">
+                            <option value="">Select Thermal Model</option>
+                            <option value="isothermal">Isothermal</option>
+                            <option value="lumped">Lumped</option>
+                        </select>
+
+                        <select id="solver-mode">
+                            <option value="">Select Solver Mode</option>
+                            <option value="safe">Safe</option>
+                            <option value="fast">Fast</option>
                         </select>
                     </div>
+
                 </div>
 
                 <!-- Simulation scenario section -->
@@ -124,8 +149,8 @@
         <div id="results-section" class="results-container">
             <div class="content">
                 <div class="charts-container">
-                    <canvas id="current_voltage_chart" width="300" height="150"></canvas>
-                    <canvas id="temperature_chart" width="25" height="25"></canvas>
+                    <canvas id="current_voltage_chart"></canvas>
+                    <canvas id="temperature_chart"></canvas>
                 </div>
             </div>
         </div>
