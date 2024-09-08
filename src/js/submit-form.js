@@ -28,18 +28,17 @@ function buildPostData(simulationData) {
             bpx_battery_models: document.getElementById('cell-model').value
         },
         electrochemical_model: {
-            model: 'DFN',
+            model: document.getElementById('electrochemical-model').value || 'SPM',
             cell_geometry: document.getElementById('cell-geometry').value || "arbitrary", // optional, default is 'arbitrary' in pybamm
             thermal_model: document.getElementById('thermal-model').value || "isothermal"    // optional, default is'lumped' in pybamm
         },
-        solver: 'CasadiSolver', // Static val
         "solver_model": {
-            "solver": "IDAKLUSolver",
+            solver: document.getElementById('solver').value || "CasadiSolver",
             "tolerance": {
                 "atol": 1e-6,
                 "rtol": 1e-6
             },
-            "mode": document.getElementById('solver-mode').value || "safe"  // optional, default is'safe' in pybamm
+            "mode": "safe"  // only used in CasadiSolver, default is'safe' in pybamm
         },
         simulation: simulationData,
         display_params: ["Terminal voltage [V]", "Current [A]", "X-averaged cell temperature [C]"] // Static for now

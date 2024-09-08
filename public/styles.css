@@ -241,7 +241,7 @@ li.active {
 }
 
 /* Specific styles for new dropdowns in advanced features */
-#cell-geometry, #thermal-model, #solver-mode {
+#cell-geometry, #thermal-model, #solver, #electrochemical-model {
   width: 100%; 
   padding: 6px;
   border: 2px solid #ccc;

@@ -50,6 +50,19 @@
                     </div>
                     <!-- Advanced Features Menu -->
                     <div id="advanced-features-menu" class="advanced-features hidden">
+                        <select id="solver">
+                            <option value="">Select Solver</option>
+                            <option value="CasadiSolver">Casadi-Solver</option>
+                            <option value="IDAKLUSolver">IDAKLU-Solver</option>
+                        </select>
+
+                        <select id="electrochemical-model">
+                            <option value="">Select Electrochemical Model</option>
+                            <option value="DFN">Doyle-Fuller-Newman (DFN)</option>
+                            <option value="SPM">Single Particle Model (SPM)</option>
+                            <option value="SPM">Single Particle Model with Electrolyte (SPMe)</option>
+                        </select>
+
                         <select id="cell-geometry">
                             <option value="">Select Cell Geometry</option>
                             <option value="arbitrary">Arbitrary</option>
@@ -60,12 +73,6 @@
                             <option value="">Select Thermal Model</option>
                             <option value="isothermal">Isothermal</option>
                             <option value="lumped">Lumped</option>
-                        </select>
-
-                        <select id="solver-mode">
-                            <option value="">Select Solver Mode</option>
-                            <option value="safe">Safe</option>
-                            <option value="fast">Fast</option>
                         </select>
                     </div>
 
